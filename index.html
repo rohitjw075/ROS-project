@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROHIT'S WEB — STUDENT COMMAND CENTER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- 1. ANIMATED INTRO SCREEN                   -->
+  <!-- ========================================== -->
+  <div id="intro-screen">
+    <div class="grid-overlay"></div>
+    <div class="intro-content">
+      <div class="rw-logo-wrapper">
+        <div class="rw-logo">RW</div>
+        <div class="rw-glow-ring"></div>
+      </div>
+      
+      <h1 class="intro-title">ROHIT'S WEB</h1>
+      <p class="intro-subtitle">STUDENT COMMAND CENTER</p>
+
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">SYS_BOOT_SEQUENCE_v4.0.9</span>
+        </div>
+        <div class="terminal-body" id="boot-log">
+          <!-- Boot logs will be typed here by JS -->
+        </div>
+      </div>
+
+      <div class="loading-container">
+        <div class="loading-bar" id="boot-progress"></div>
+      </div>
+
+      <button id="btn-enter-system" class="btn-neon hidden">
+        <span class="btn-glow"></span>
+        <span class="btn-text">⚡ ENTER SYSTEM ⚡</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MAIN SYSTEM CONTAINER                       -->
+  <!-- ========================================== -->
+  <div id="app-container" class="hidden">
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <button id="btn-sidebar-toggle" class="icon-btn" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="mobile-logo">ROHIT'S WEB</div>
+      <div class="status-indicator">
+        <span class="status-dot online"></span>
+      </div>
+    </header>
+
+    <div class="app-layout">
+      
+      <!-- ========================================== -->
+      <!-- 3. SIDEBAR NAVIGATION                      -->
+      <!-- ========================================== -->
+      <aside id="sidebar">
+        <div class="brand-container">
+          <div class="brand-logo">RW</div>
+          <div class="brand-text">
+            <h2>ROHIT'S WEB</h2>
+            <p class="sys-status"><span class="status-dot online"></span> ONLINE</p>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="#" class="nav-link active" data-view="dashboard">
+            <span class="nav-icon">📊</span> <span class="nav-text">Dashboard</span>
+          </a>
+          <a href="#" class="nav-link" data-view="studypulse">
+            <span class="nav-icon">⚡</span> <span class="nav-text">StudyPulse</span>
+          </a>
+          <a href="#" class="nav-link" data-view="assignments">
+            <span class="nav-icon">📝</span> <span class="nav-text">Assignments</span>
+          </a>
+          <a href="#" class="nav-link" data-view="practicals">
+            <span class="nav-icon">🧪</span> <span class="nav-text">Practicals</span>
+          </a>
+          <a href="#" class="nav-link" data-view="timetable">
+            <span class="nav-icon">📅</span> <span class="nav-text">Timetable</span>
+          </a>
+          <a href="#" class="nav-link" data-view="campushub">
+            <span class="nav-icon">📡</span> <span class="nav-text">CampusHub</span>
+          </a>
+          <a href="#" class="nav-link" data-view="goals">
+            <span class="nav-icon">🎯</span> <span class="nav-text">Goals</span>
+          </a>
+          <a href="#" class="nav-link" data-view="notes">
+            <span class="nav-icon">📌</span> <span class="nav-text">Quick Notes</span>
+          </a>
+          <a href="#" class="nav-link" data-view="focus">
+            <span class="nav-icon">⏱️</span> <span class="nav-text">Focus Mode</span>
+          </a>
+          <a href="#" class="nav-link" data-view="datacenter">
+            <span class="nav-icon">💾</span> <span class="nav-text">Data Center</span>
+          </a>
+          <a href="#" class="nav-link" data-view="settings">
+            <span class="nav-icon">⚙️</span> <span class="nav-text">Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="quick-audio-toggle">
+            <span>SOUND FX</span>
+            <button id="btn-quick-sound" class="btn-badge">ON</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Sidebar Overlay for Mobile -->
+      <div id="mobile-overlay"></div>
+
+      <!-- MAIN CONTENT VIEW CONTAINER -->
+      <main id="main-content">
+        
+        <!-- TOP SYSTEM HEADER -->
+        <header class="top-header">
+          <div class="view-title-container">
+            <h1 id="current-view-title">SYSTEM DASHBOARD</h1>
+            <p id="system-time-display">00:00:00 AM | LOCAL SECURE OS</p>
+          </div>
+          <div class="header-actions">
+            <div class="live-clock" id="live-clock">00:00:00</div>
+          </div>
+        </header>
+
+        <!-- VIEW 1: DASHBOARD -->
+        <section id="view-dashboard" class="view-panel active">
+          
+          <div class="dashboard-banner glass-panel">
+            <div class="banner-text">
+              <h2>WELCOME BACK, OPERATOR ROHIT</h2>
+              <p>System status optimal. Productivity tracking modules fully operational.</p>
+            </div>
+            <div class="banner-badge">SYS MODE: ACTIVE</div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card glass-panel">
+              <div class="stat-icon">📝</div>
+              <div class="stat-details">
+                <span class="stat-value" id="dash-total-assignments">0</span>
+                <span class="stat-label">Total Assignments</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-panel">
+              <div class="stat-icon">⏳</div>
+              <div class="stat-details">
+                <span class="stat-value neon-yellow" id="dash-pending-assignments">0</span>
+                <span class="stat-label">Pending Assignments</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-panel">
+              <div class="stat-icon">🧪</div>
+              <div class="stat-details">
+                <span class="stat-value neon-cyan" id="dash-practical-progress">0%</span>
+                <span class="stat-label">Practical Progress</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-panel">
+              <div class="stat-icon">🎯</div>
+              <div class="stat-details">
+                <span class="stat-value neon-green" id="dash-goals-progress">0%</span>
+                <span class="stat-label">Goals Progress</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-panel">
+              <div class="stat-icon">⏱️</div>
+              <div class="stat-details">
+                <span class="stat-value" id="dash-study-time">0h 0m</span>
+                <span class="stat-label">Study Time</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-panel">
+              <div class="stat-icon">📌</div>
+              <div class="stat-details">
+                <span class="stat-value" id="dash-notes-count">0</span>
+                <span class="stat-label">Quick Notes</span>
+              </div>
+            </div>
+
+            <div class="stat-card glass-panel">
+              <div class="stat-icon">📡</div>
+              <div class="stat-details">
+                <span class="stat-value" id="dash-campus-count">0</span>
+                <span class="stat-label">Campus Posts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- QUICK ACTIONS BLOCK -->
+          <div class="section-block">
+            <h3 class="section-title">QUICK ACTIONS</h3>
+            <div class="quick-actions-bar">
+              <button class="action-btn" id="quick-btn-assignment">+ Assignment</button>
+              <button class="action-btn" id="quick-btn-practical">+ Practical</button>
+              <button class="action-btn" id="quick-btn-goal">+ Goal</button>
+              <button class="action-btn" id="quick-btn-note">+ Note</button>
+              <button class="action-btn highlight" id="quick-btn-focus">⚡ START FOCUS</button>
+            </div>
+          </div>
+
+          <div class="dashboard-widgets-grid">
+            <div class="glass-panel widget-box">
+              <h3 class="widget-title">URGENT ASSIGNMENTS</h3>
+              <div id="dash-urgent-list" class="widget-list"></div>
+            </div>
+            <div class="glass-panel widget-box">
+              <h3 class="widget-title">TODAY'S SCHEDULE</h3>
+              <div id="dash-schedule-list" class="widget-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 2: STUDYPULSE -->
+        <section id="view-studypulse" class="view-panel">
+          <div class="view-header-bar">
+            <h2>SUBJECT STUDY TRACKER</h2>
+            <button class="btn-cyan" id="btn-add-subject">+ Add Subject</button>
+          </div>
+          <div id="studypulse-grid" class="cards-grid"></div>
+        </section>
+
+        <!-- VIEW 3: ASSIGNMENTS -->
+        <section id="view-assignments" class="view-panel">
+          <div class="view-header-bar">
+            <h2>ASSIGNMENT MANAGER</h2>
+            <button class="btn-cyan" id="btn-add-assignment">+ New Assignment</button>
+          </div>
+
+          <div class="controls-bar glass-panel">
+            <input type="text" id="asgn-search" placeholder="Search assignments..." class="cyber-input">
+            <select id="asgn-filter-priority" class="cyber-select">
+              <option value="ALL">All Priorities</option>
+              <option value="HIGH">High Priority</option>
+              <option value="MEDIUM">Medium Priority</option>
+              <option value="LOW">Low Priority</option>
+            </select>
+            <select id="asgn-filter-status" class="cyber-select">
+              <option value="ALL">All Status</option>
+              <option value="PENDING">Pending Only</option>
+              <option value="COMPLETED">Completed Only</option>
+            </select>
+          </div>
+
+          <div id="assignments-list" class="items-list"></div>
+        </section>
+
+        <!-- VIEW 4: PRACTICALS -->
+        <section id="view-practicals" class="view-panel">
+          <div class="view-header-bar">
+            <h2>PRACTICAL TRACKER</h2>
+            <button class="btn-cyan" id="btn-add-practical">+ Add Practical</button>
+          </div>
+
+          <div class="practical-stats-bar glass-panel">
+            <div class="progress-outer-box">
+              <div class="progress-label-wrap">
+                <span>PRACTICAL COMPLETION RATE</span>
+                <span id="practical-stats-text">0/0 Completed</span>
+              </div>
+              <div class="cyber-progress">
+                <div id="practical-overall-progress" class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="practicals-list" class="items-list"></div>
+        </section>
+
+        <!-- VIEW 5: TIMETABLE -->
+        <section id="view-timetable" class="view-panel">
+          <div class="view-header-bar">
+            <h2>WEEKLY CLASS SCHEDULE</h2>
+            <button class="btn-cyan" id="btn-add-timetable">+ Add Class</button>
+          </div>
+
+          <div class="day-tabs" id="timetable-day-tabs">
+            <button class="day-tab active" data-day="Monday">MON</button>
+            <button class="day-tab" data-day="Tuesday">TUE</button>
+            <button class="day-tab" data-day="Wednesday">WED</button>
+            <button class="day-tab" data-day="Thursday">THU</button>
+            <button class="day-tab" data-day="Friday">FRI</button>
+            <button class="day-tab" data-day="Saturday">SAT</button>
+          </div>
+
+          <div id="timetable-list" class="items-list"></div>
+        </section>
+
+        <!-- VIEW 6: CAMPUSHUB -->
+        <section id="view-campushub" class="view-panel">
+          <div class="view-header-bar">
+            <h2>CAMPUS INFORMATION HUB</h2>
+            <button class="btn-cyan" id="btn-add-campus">+ New Post</button>
+          </div>
+
+          <div class="controls-bar glass-panel">
+            <input type="text" id="campus-search" placeholder="Search announcements & events..." class="cyber-input">
+            <div class="category-pills">
+              <button class="pill active" data-cat="ALL">ALL</button>
+              <button class="pill" data-cat="NOTICES">NOTICES</button>
+              <button class="pill" data-cat="EVENTS">EVENTS</button>
+              <button class="pill" data-cat="RESOURCES">RESOURCES</button>
+            </div>
+          </div>
+
+          <div id="campus-grid" class="cards-grid"></div>
+        </section>
+
+        <!-- VIEW 7: GOALS -->
+        <section id="view-goals" class="view-panel">
+          <div class="view-header-bar">
+            <h2>PERSONAL GOALS TRACKER</h2>
+            <button class="btn-cyan" id="btn-add-goal">+ Add Goal</button>
+          </div>
+
+          <div class="goal-stats-bar glass-panel">
+            <div class="progress-outer-box">
+              <div class="progress-label-wrap">
+                <span>OVERALL GOAL PROGRESS</span>
+                <span id="goals-stats-text">0% Completed</span>
+              </div>
+              <div class="cyber-progress">
+                <div id="goals-overall-progress" class="progress-fill neon-green-bg"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="goals-list" class="items-list"></div>
+        </section>
+
+        <!-- VIEW 8: QUICK NOTES -->
+        <section id="view-notes" class="view-panel">
+          <div class="view-header-bar">
+            <h2>COMMAND QUICK NOTES</h2>
+            <button class="btn-cyan" id="btn-add-note">+ New Note</button>
+          </div>
+
+          <div class="controls-bar glass-panel">
+            <input type="text" id="notes-search" placeholder="Search notes..." class="cyber-input">
+          </div>
+
+          <div id="notes-grid" class="cards-grid"></div>
+        </section>
+
+        <!-- VIEW 9: FOCUS MODE -->
+        <section id="view-focus" class="view-panel">
+          <div class="focus-container glass-panel">
+            <h2>NEON FOCUS TIMER</h2>
+            <p>Select target session time and enter deep work mode.</p>
+
+            <div class="timer-presets">
+              <button class="preset-btn active" data-time="25">25 MIN</button>
+              <button class="preset-btn" data-time="45">45 MIN</button>
+              <button class="preset-btn" data-time="60">60 MIN</button>
+            </div>
+
+            <div class="circular-timer-wrapper">
+              <svg class="timer-svg" viewBox="0 0 100 100">
+                <circle class="timer-bg-circle" cx="50" cy="50" r="45"></circle>
+                <circle class="timer-progress-circle" id="timer-progress" cx="50" cy="50" r="45"></circle>
+              </svg>
+              <div class="timer-display" id="timer-display">25:00</div>
+            </div>
+
+            <div class="timer-controls">
+              <button id="btn-timer-start" class="btn-neon-lg green">START FOCUS</button>
+              <button id="btn-timer-pause" class="btn-neon-lg yellow hidden">PAUSE</button>
+              <button id="btn-timer-reset" class="btn-neon-lg red">RESET</button>
+            </div>
+
+            <div class="focus-metrics-foot">
+              <p>Today's Completed Focus Sessions: <strong id="focus-session-count">0</strong></p>
+              <p>Total Focus Time Added: <strong id="focus-total-time">0h 0m</strong></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 10: DATA CENTER -->
+        <section id="view-datacenter" class="view-panel">
+          <div class="view-header-bar">
+            <h2>LOCAL DATA CENTER</h2>
+          </div>
+
+          <div class="glass-panel data-card">
+            <h3>LOCAL STORAGE STATUS: <span class="neon-green">ONLINE</span></h3>
+            <p>Your data is stored locally in this browser. No external cloud dependencies required.</p>
+            
+            <div class="storage-usage-box">
+              <div class="progress-label-wrap">
+                <span>ESTIMATED STORAGE USED</span>
+                <span id="storage-used-text">0 KB / 5000 KB</span>
+              </div>
+              <div class="cyber-progress">
+                <div id="storage-progress" class="progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="data-actions-grid">
+              <button id="btn-export-json" class="btn-neon">
+                <span>💾 EXPORT DATA (JSON)</span>
+              </button>
+              
+              <label class="btn-neon label-btn">
+                <span>📂 IMPORT DATA (JSON)</span>
+                <input type="file" id="import-json-file" accept=".json" style="display:none;">
+              </label>
+
+              <button id="btn-clear-data" class="btn-neon red-glow">
+                <span>⚠️ CLEAR ALL DATA</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 11: SETTINGS -->
+        <section id="view-settings" class="view-panel">
+          <div class="view-header-bar">
+            <h2>SYSTEM CONFIGURATION</h2>
+          </div>
+
+          <div class="glass-panel settings-panel">
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4>System Sound Effects</h4>
+                <p>Enable synthesized Web Audio API sound effects on interactions.</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="setting-sound" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4>Interface Animations</h4>
+                <p>Toggle smooth glow effects and UI transitions.</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="setting-animations" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4>Compact Display Mode</h4>
+                <p>Reduce element padding for higher data density.</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="setting-compact">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4>Browser Notifications</h4>
+                <p>Request permission for system toast/popup alerts.</p>
+              </div>
+              <button id="btn-request-notif" class="btn-cyan">Enable Notifications</button>
+            </div>
+
+            <div class="setting-item info-block">
+              <h4>System Information</h4>
+              <p>ROHIT'S WEB - Student Command Center v4.0.9</p>
+              <p>Engine: Vanilla JS / HTML5 / CSS3 Grid & Flexbox</p>
+              <p>User Agent: Modern Standard Compatible Browser</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- REUSABLE MODAL SYSTEM                      -->
+  <!-- ========================================== -->
+  <div id="global-modal" class="modal-overlay hidden">
+    <div class="modal-content glass-panel">
+      <div class="modal-header">
+        <h3 id="modal-title">SYSTEM PROMPT</h3>
+        <button id="btn-modal-close" class="modal-close">&times;</button>
+      </div>
+      <form id="modal-form" onsubmit="return false;">
+        <div id="modal-fields" class="modal-body"></div>
+        <div class="modal-footer">
+          <button type="button" id="btn-modal-cancel" class="btn-neon red-glow">Cancel</button>
+          <button type="submit" id="btn-modal-submit" class="btn-neon">Save System Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div id="toast-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
